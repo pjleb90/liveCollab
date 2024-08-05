@@ -1,6 +1,12 @@
-import { Editor } from '@/components/editor/Editor'
-import Header from '@/components/Header'
 import React from 'react'
+import {
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from '@clerk/nextjs'
+import Header from '@/components/Header'
+import { Editor } from '@/components/editor/Editor'
 
 const Document = () => {
   return (
@@ -11,6 +17,12 @@ const Document = () => {
             Placeholder Document Title
           </p>
         </div>
+        <SignedOut>
+            <SignInButton />
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
       </Header>
       <Editor />
     </div>
