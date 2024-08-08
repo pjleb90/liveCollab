@@ -14,6 +14,7 @@ import {
     UserButton
 } from '@clerk/nextjs'
 import Header from '@/components/Header'
+import Loader from './Loader';
 import { Editor } from '@/components/editor/Editor'
 import ActiveCollaborators from './ActiveCollaborators';
 import { Input } from './ui/input';
@@ -72,7 +73,7 @@ const CollaborativeRoom = ( { roomId, roomMetadata } : CollaborativeRoomProps ) 
 
     return (
         <RoomProvider id={roomId}>
-            <ClientSideSuspense fallback={<div>Loading…</div>}>
+            <ClientSideSuspense fallback={<Loader />}>
                 <div className='collaborative-room'>
                     <Header>
                         <div ref={containerRef} className='flex w-fit items-center justify-center gap-2'>
