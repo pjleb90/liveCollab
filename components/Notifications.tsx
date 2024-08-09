@@ -6,15 +6,23 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import { InboxNotification, InboxNotificationList, LiveblocksUIConfig } from "@liveblocks/react-ui"
-import { useInboxNotifications, useUnreadInboxNotificationsCount } from "@liveblocks/react/suspense"
+import { useInboxNotifications, useUnreadInboxNotificationsCount, useMarkInboxNotificationAsRead } from "@liveblocks/react/suspense"
 import Image from "next/image"
 import { ReactNode } from "react"
+import { Button } from "./ui/button"
 
 const Notifications = () => {
     const { inboxNotifications } = useInboxNotifications();
     const { count } = useUnreadInboxNotificationsCount();
+    const markInboxNotificationAsRead = useMarkInboxNotificationAsRead();
 
     const unreadNotifications = inboxNotifications.filter((notification) => !notification.readAt);
+
+    const handleClearAll = () => {
+        unreadNotifications.forEach((notification) => {
+            markInboxNotificationAsRead(notification.id);
+        });
+    };
 
     return (
         <Popover>
@@ -77,6 +85,16 @@ const Notifications = () => {
                                 }}
                             />
                         ))}
+                    <div className="flex justify-between items-center py-2 px-4">
+                        {unreadNotifications.length > 0 && (
+                            <button
+                                onClick={handleClearAll}
+                                className="text-sm text-blue-500 hover:underline"
+                            >
+                                Clear All
+                            </button>
+                        )}
+                    </div>
                     </InboxNotificationList>
                 </LiveblocksUIConfig>
             </PopoverContent>
