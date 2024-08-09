@@ -12,8 +12,8 @@ const fontSans = FontSans({
 })
 
 export const metadata = {
-  title: "liveCollab",
-  description: "Bringing teams together",
+  title: "ColLabs",
+  description: "Collaboration made easy",
   icons: {
     icon: "/favicon.ico",
   },
@@ -27,7 +27,7 @@ export default function RootLayout({ children }:{ children: React.ReactNode }) {
           colorPrimary: '#3371FF',
           fontSize: '16px',
         }
-       }}
+      }}
     >
       <html lang="en" suppressHydrationWarning>
         <head />
