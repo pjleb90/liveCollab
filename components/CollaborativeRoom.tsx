@@ -19,6 +19,7 @@ import { Editor } from '@/components/editor/Editor'
 import ActiveCollaborators from './ActiveCollaborators';
 import { Input } from './ui/input';
 import { updateDocument } from '@/lib/actions/room.actions';
+import ShareModal from './shareModal';
 
 const CollaborativeRoom = ( { roomId, roomMetadata, users, currentUserType } : CollaborativeRoomProps ) => {
     const [documentTitle, setDocumentTitle] = useState(roomMetadata.title);
@@ -108,6 +109,12 @@ const CollaborativeRoom = ( { roomId, roomMetadata, users, currentUserType } : C
                         </div>
                         <div className='flex w-full flex-1 justify-end gap-2 sm:gap-3'>
                             <ActiveCollaborators />
+                            <ShareModal
+                                roomId={roomId}
+                                collaborators={users}
+                                creatorId={roomMetadata.creatorId}
+                                currentUserType={currentUserType}
+                            />
                             <SignedOut>
                                 <SignInButton />
                             </SignedOut>
